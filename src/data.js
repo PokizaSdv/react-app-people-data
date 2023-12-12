@@ -319,3 +319,16 @@ export const peopleData = [
         }
     }
 ];
+
+export const peopleData1 = [
+    { id: 1, name: "Alice", age: 28, city: "New York" },
+    { id: 2, name: "Bob", age: 35, city: "Los Angeles" },
+    { id: 3, name: "Charlie", age: 22, city: "Chicago" },
+    { id: 4, name: "David", age: 30, city: "Houston" },
+    { id: 5, name: "Eva", age: 25, city: "Miami" },
+    { id: 6, name: "Frank", age: 32, city: "Seattle" },
+    { id: 7, name: "Grace", age: 29, city: "Boston" },
+    { id: 8, name: "Henry", age: 26, city: "San Francisco" },
+    { id: 9, name: "Ivy", age: 31, city: "Denver" },
+    { id: 10, name: "Jack", age: 27, city: "Atlanta" }
+];
