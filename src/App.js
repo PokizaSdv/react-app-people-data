@@ -3,29 +3,45 @@ import "./App.css";
 
 import { peopleData } from "./data";
 
+function calculateYearlySaving(person) {
+    return person.finance.yearlySalary - person.finance.yearlyTotalExpenses;
+}
+
+function calculateAverageMonthlyExpense(person) {
+    return person.finance.yearlyTotalExpenses / 12;
+  }
+
+function findPersonWithMaxSalary(data) {
+    let maxSalaryPerson = data[0];
+
+    for (let i = 1; i < data.length; i++) {
+        if (
+            data[i].finance.yearlySalary > maxSalaryPerson.finance.yearlySalary
+        ) {
+            maxSalaryPerson = data[i];
+        }
+    }
+
+    return maxSalaryPerson;
+}
+
+function findPersonWithMinSalary(data) {
+    let minSalaryPerson = data[0];
+
+    for (let i = 1; i < data.length; i++) {
+        if (
+            data[i].finance.yearlySalary < minSalaryPerson.finance.yearlySalary
+        ) {
+            minSalaryPerson = data[i];
+        }
+    }
+
+    return minSalaryPerson;
+}
+
 function App() {
-    let maxSalaryPerson = peopleData[0];
-
-    for (let i = 1; i < peopleData.length; i++) {
-        if (
-            peopleData[i].finance.yearlySalary >
-            maxSalaryPerson.finance.yearlySalary
-        ) {
-            maxSalaryPerson = peopleData[i];
-        }
-    }
-
-    let minSalaryPerson = peopleData[0];
-
-    // Find the person who made the least
-    for (let i = 1; i < peopleData.length; i++) {
-        if (
-            peopleData[i].finance.yearlySalary <
-            minSalaryPerson.finance.yearlySalary
-        ) {
-            minSalaryPerson = peopleData[i];
-        }
-    }
+    const maxSalaryPerson = findPersonWithMaxSalary(peopleData);
+    const minSalaryPerson = findPersonWithMinSalary(peopleData);
 
     return (
         <div className="App">
@@ -38,6 +54,7 @@ function App() {
                         <th>Age</th>
                         <th>Profession</th>
                         <th>Yearly Salary</th>
+                        <th>Yearly Expenses</th>
                         <th>Credit Score</th>
                         <th>Yearly Saving</th>
                         <th>Average Monthly Expense</th>
@@ -54,13 +71,8 @@ function App() {
                                 <td>{person.finance.yearlySalary}</td>
                                 <td>{person.finance.yearlyTotalExpenses}</td>
                                 <td>{person.finance.creditScore}</td>
-                                <td>
-                                    {person.finance.yearlySalary -
-                                        person.finance.yearlyTotalExpenses}
-                                </td>
-                                <td>
-                                    {person.finance.yearlyTotalExpenses / 12}
-                                </td>
+                                <td>{calculateYearlySaving(person)}</td>
+                                <td>{calculateAverageMonthlyExpense(person)}</td>
                             </tr>
                         );
                     })}
